@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デバイス製作(裏面)</title>
+    <style>
+      body{font-weight:bold;}
+    </style>
+</head>
+
+<body>
+  <center><h1>裏面</h1></center>
+
+    <!-- 0.事前準備 -->
+    <input type="checkbox" id="checkboxID0">
+    <label>0.事前準備</label>
+    <div id="task_x0" style="display: block;">
+    <input type="checkbox" id="checkboxID01">ウェハー<br>
+    <input type="checkbox" id="checkboxID01">アセトン<br>
+    <input type="checkbox" id="checkboxID01">マスク(SEM-TENSILE)
+    <style>#checkboxID01{margin-left: 2em;} </style>
+    </div>
+    <label id="task_x0b" style="display: none;">
+      終了済み
+    </label>
+    <br/>
+
+    <!-- 1.ベイク -->
+    <input type="checkbox" id="checkboxID1">
+    <label id="task_x1">1.ベイク(120℃ 5-10分)</label>
+    <div id="1bake"> 
+        <div id='timerDisplay1'>残り時間: 07:00</div>
+        <div id="now1">開始時刻: </div>
+        <button onclick="startTimer(420,'timerDisplay1','checkboxID1','1bake'),GetCurrentTime('now1')">スタート</button>
+        <button onclick="resetTimer(420,'timerDisplay1','checkboxID1','1bake')">リセット</button>
+    </div>
+    <br />
+
+    <!-- 2.OAP -->
+    <input type="checkbox" id="checkboxID2">
+    <label>2.OAP</label>
+    <label id="task_x2" style="display: block;">
+        条件1: 500rpm 5sec<br>
+        条件2: 1200rpm 40sec<br>
+        条件3: 3000rpm 3sec
+    </label>
+    <label id="task_x2b" style="display: none;">
+      終了済み
+    </label>
+    <br /><br />
+
+    <!-- 3.ベイク -->
+    <input type="checkbox" id="checkboxID3">
+    <label id="task_x3">3.ベイク(100℃ 1.5分)</label>
+    <br>
+    <div id="3bake"> 
+        <div id='timerDisplay3'>残り時間: 01:30</div>
+        <div id="now3">開始時刻: </div>
+        <button onclick="startTimer(90,'timerDisplay3','checkboxID3','3bake'),GetCurrentTime('now3')">スタート</button>
+        <button onclick="resetTimer(90,'timerDisplay3','checkboxID3','3bake')">リセット</button>
+    </div>    
+    <br />
+
+    <!-- 4.レジスト -->
+    <input type="checkbox" id="checkboxID4">
+    <label>4.レジスト(cp510)</label>
+    <label id="task_x4" style="display: block;">
+        条件1: 500rpm 5sec<br>
+        条件2: 1200rpm 40sec<br>
+        条件3: 3000rpm 3sec
+    </label>
+    <label id="task_x4b" style="display: none;">
+      終了済み
+    </label>
+    <br /><br />
+
+    <!-- 5.ベイク -->
+    <input type="checkbox" id="checkboxID5">
+    <label id="task_x5">5.ベイク(100℃ 5分)</label>
+    <br>
+    <div id="5bake"> 
+        <div id='timerDisplay5'>残り時間: 05:00</div>
+        <div id="now5">開始時刻: </div>
+        <button onclick="startTimer(300,'timerDisplay5','checkboxID5','5bake'),GetCurrentTime('now5')">スタート</button>
+        <button onclick="resetTimer(300,'timerDisplay5','checkboxID5','5bake')">リセット</button>
+    </div> 
+    <br />
+
+    <!-- 6.露光 -->
+    <input type="checkbox" id="checkboxID6">
+    <label>6.露光(550)</label>
+    <br />
+    <div id="task_x6" style="display: block;">
+    <label for="inputNumber">露光量入力:</label>
+    <input type="number" id="inputExp">
+    <button onclick="calculateExpTime(550,'Exp_time1')">計算</button>
+    <br />
+    <label id="Exp_time1">露光時間: </label>
+    </div>
+    <label id="task_x6b" style="display: none;">
+      終了済み
+    </label>
+    <br />   
+
+    <!-- 7.現像(NMB3) -->
+    <input type="checkbox" id="checkboxID7">
+    <label id="task_x7">7.現像(NMB3)</label>
+    <br>
+    <div id="7bake"> 
+        <div id="now7">開始時刻: </div>
+        <div id='timerDisplay7'>残り時間: 03:00</div>
+        <button onclick="startTimer(180,'timerDisplay7','checkboxID7','7bake'),GetCurrentTime('now7')">スタート</button>
+        <button onclick="resetTimer(180,'timerDisplay7','checkboxID7','7bake')">リセット</button>
+    </div> 
+    <div id="71bake"> 
+        <div id='timerDisplay71'>残り時間: 02:30</div>
+        <button onclick="startTimer(150,'timerDisplay71','checkboxID71','71bake'),GetCurrentTime('now71')">スタート</button>
+        <button onclick="resetTimer(150,'timerDisplay71','checkboxID71','71bake')">リセット</button>
+    </div> 
+    <br />    
+
+    <!-- 8.流水洗浄 -->
+    <input type="checkbox" id="checkboxID8">
+    <label id="task_x8">8.流水洗浄</label>
+    <br>
+    <div id="8bake"> 
+        <div id='timerDisplay8'>残り時間: 01:00</div>
+        <div id="now8">開始時刻: </div>
+        <button onclick="startTimer(60,'timerDisplay8','checkboxID8','8bake'),GetCurrentTime('now8')">スタート</button>
+        <button onclick="resetTimer(60,'timerDisplay8','checkboxID8','8bake')">リセット</button>
+    </div> 
+    <br />     
+
+    <!-- 9.ベイク -->
+    <input type="checkbox" id="checkboxID9">
+    <label id="task_x9">9.ベイク(120℃ 3分)</label>
+    <br>
+    <div id="9bake"> 
+        <div id='timerDisplay9'>残り時間: 03:00</div>
+        <div id="now9">開始時刻: </div>
+        <button onclick="startTimer(180,'timerDisplay9','checkboxID9','9bake'),GetCurrentTime('now9')">スタート</button>
+        <button onclick="resetTimer(180,'timerDisplay9','checkboxID9','9bake')">リセット</button>
+    </div> 
+    <br />
+
+<!-- JavaScript -->
+<script>
+function GetCurrentTime(id) {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  const time = `${hours}:${minutes}:${seconds}`;
+  const text = `開始時刻: ${time}`; 
+  document.getElementById(id).innerText = text;
+}
+
+let timerInterval;
+let timerRunning = false;
+let timerSeconds;
+let timerID;
+let checkboxID;
+let taskID;
+function startTimer(duration,timer,checkID,tasksID) {
+  timerSeconds=duration;
+  timerID=timer;
+  checkboxID=checkID;
+  taskID=tasksID;
+  if (!timerRunning) {
+    timerInterval = setInterval(updateTimer, 1000);
+    timerRunning = true;
+  }
+}
+function resetTimer(duration) {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = duration;
+  updateTimerDisplay();
+  document.getElementById(checkboxID).checked = false;
+}
+function updateTimer() {
+  if (timerSeconds > 0) {
+    timerSeconds--;
+    updateTimerDisplay();
+  } else {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById(checkboxID).checked = true;
+    document.getElementById(taskID).textContent = '終了済み'
+  }
+}
+function updateTimerDisplay() {
+  const minutes = Math.floor(timerSeconds / 60);
+  const seconds = timerSeconds % 60;
+  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  const timeElement=document.getElementById(timerID);
+  timeElement.textContent= '残り時間: '+formattedTime;
+  timeElement.style.color='red';
+}
+
+function calculateExpTime(w,Exp_timeID){
+  let Exp = document.getElementById("inputExp").value;
+  let Time = w/parseFloat(Exp);
+  document.getElementById(Exp_timeID).innerText = '露光時間: '+Time.toFixed(0)+'sec';
+}
+
+function checkboxDisplay(checkboxID,defaultMessageID,changedMessageID){
+  const checkbox = document.getElementById(checkboxID);
+  const labelA = document.getElementById(defaultMessageID);
+  const labelB = document.getElementById(changedMessageID);
+
+  checkbox.addEventListener('change',function(){
+    if (this.checked){
+      labelA.style.display='none';
+      labelB.style.display='block';
+    }
+    else{
+      labelA.style.display='block';
+      labelB.style.display='none';
+    }
+  })
+}
+checkboxDisplay("checkboxID0","task_x0","task_x0b");
+checkboxDisplay("checkboxID2","task_x2","task_x2b");
+checkboxDisplay("checkboxID4","task_x4","task_x4b");
+checkboxDisplay("checkboxID6","task_x6","task_x6b");
+
+</script>
+</body>
+</html>
