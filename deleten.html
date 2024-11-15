@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改行をスペースに変換</title>
+</head>
+<body>
+
+    <textarea id="inputText" rows="4" cols="50" placeholder="ここに文章をペーストしてください"></textarea>
+    <br>
+    <button onclick="convertAndCopy()">変換してコピー</button>
+    <br>
+    <input type="text" id="outputText" readonly>
+
+    <script>
+        function convertAndCopy() {
+            var inputText = document.getElementById('inputText').value;
+            var convertedText = inputText.replace(/\n/g, ' '); // 改行をスペースに変換
+            document.getElementById('outputText').value = convertedText; // 結果を表示
+
+            // コピー
+            var outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+        }
+    </script>
+
+</body>
+</html>
